@@ -1,0 +1,446 @@
+@charset "UTF-8";
+/*var mySwiper = new Swiper(".swiper-container", { //banner图
+    autoplay: {
+        delay: 1500
+    },
+    scrollbar: {
+        el: '.swiper-scrollbar'
+    }
+});
+mySwiper.scrollbar.$el.css('height', "10px");
+mySwiper.scrollbar.$dragEl.css("background", '#46D264');*/
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section,
+summary,
+time,
+mark,
+audio,
+video,
+input {
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: 0;
+  font-family: STHeitiSC-Light;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+html,
+body,
+form,
+fieldset,
+p,
+div,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  -webkit-text-size-adjust: none;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+body {
+  font-family: arial, sans-serif;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none;
+}
+
+ins,
+a {
+  text-decoration: none;
+}
+
+del {
+  text-decoration: line-through;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+img {
+  display: inline-block;
+}
+
+input,
+textarea {
+  border: none;
+  background: none;
+  outline: none;
+  -webkit-appearance: none;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+  -moz-tap-highlight-color: transparent;
+  -ms-tap-highlight-color: transparent;
+  -o-tap-highlight-color: transparent;
+}
+
+/*html {
+    font-size: $browser-default-font-size;
+}*/
+html {
+  font-size: 37.5px;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  background: #fff;
+  flex-direction: column;
+}
+
+.wrapper header {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  height: 1.33333rem;
+  border-bottom: 1px solid #eeeeee;
+}
+
+.wrapper header .ipt input {
+  width: 8rem;
+  height: 0.8rem;
+  background: #eeeeee;
+  font-size: 0.37333rem;
+}
+
+.wrapper header .title {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0.26667rem;
+  box-sizing: border-box;
+}
+
+.wrapper header .title .tit {
+  font-size: 0.50667rem;
+}
+
+.wrapper header .title .after {
+  width: 10%;
+}
+
+.wrapper section {
+  font-size: 0.37333rem;
+  width: 100%;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.wrapper section .mui-slider {
+  width: 100%;
+  height: 100%;
+}
+
+.wrapper section .mui-slider .mui-slider-group {
+  width: 100%;
+  height: 100%;
+}
+
+.wrapper section .mui-slider .mui-slider-group .mui-slider-item .ules li {
+  width: 100%;
+  height: 2.66667rem;
+  border-bottom: 1px solid #eeeeee;
+  display: flex;
+}
+
+.wrapper section .mui-slider .mui-slider-group .mui-slider-item .ules li .ig {
+  width: 0.53333rem;
+  margin-top: 0.90667rem;
+  margin-left: 0.13333rem;
+}
+
+.wrapper section .mui-slider .mui-slider-group .mui-slider-item .ules li dl {
+  width: 70%;
+  padding: 0.26667rem;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  line-height: 0.8rem;
+}
+
+.wrapper section .mui-slider .mui-slider-group .mui-slider-item .ules li dl dt {
+  width: 40%;
+  height: 1.6rem;
+  background: #f1f1f1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wrapper section .mui-slider .mui-slider-group .mui-slider-item .ules li dl dt img {
+  width: 60%;
+}
+
+.wrapper section .mui-slider .mui-slider-group .mui-slider-item .ules li dl dd {
+  padding-left: 0.26667rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.wrapper section .mui-slider .mui-slider-group .mui-slider-item .ules li .boxbill {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.wrapper section .mui-slider .mui-slider-group .mui-slider-item .ules li .boxbill p {
+  margin-top: 0.4rem;
+}
+
+.wrapper section .mui-slider .mui-slider-group .mui-slider-item .ules li .boxbill .removes {
+  width: 0.53333rem;
+  height: 0.53333rem;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 0.56rem;
+  background: #eeeeee;
+}
+
+.wrapper section .mui-slider .mui-slider-group #hero {
+  width: 100%;
+  height: 100%;
+}
+
+.wrapper section .mui-slider .mui-slider-group #hero .lefban {
+  width: 20%;
+  height: 100%;
+  border-right: 1px solid #eeeeee;
+  float: left;
+}
+
+.wrapper section .mui-slider .mui-slider-group #hero .lefban .lef {
+  height: 101%;
+}
+
+.wrapper section .mui-slider .mui-slider-group #hero .lefban .lef ul li {
+  font-size: 0.37333rem;
+  width: 100%;
+  height: 1.06667rem;
+  text-align: center;
+  line-height: 1.06667rem;
+}
+
+.wrapper section .mui-slider .mui-slider-group #hero .rigban {
+  width: 80%;
+  height: 100%;
+  float: right;
+}
+
+.wrapper section .mui-slider .mui-slider-group #hero .rigban .rig .banner {
+  padding: 0.26667rem;
+  box-sizing: border-box;
+}
+
+.wrapper section .mui-slider .mui-slider-group #hero .rigban .rig .banner img {
+  width: 100%;
+}
+
+.wrapper section .mui-slider .mui-slider-group #hero .rigban .rig .content {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.wrapper section .mui-slider .mui-slider-group #hero .rigban .rig .content dl {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 0.53333rem;
+  width: 33%;
+}
+
+.wrapper section .mui-slider .mui-slider-group #hero .rigban .rig .content dl dt {
+  width: 50%;
+  height: 100%;
+}
+
+.wrapper section .mui-slider .mui-slider-group #hero .rigban .rig .content dl dt img {
+  width: 100%;
+}
+
+.wrapper section .mui-slider .mui-slider-group #hero .rigban .rig .content dl dt dd p {
+  text-align: center;
+}
+
+.wrapper footer {
+  border-top: 1px solid #eeeeee;
+  font-size: 0.37333rem;
+  width: 100%;
+  height: 1.6rem;
+  background: #fff;
+  display: flex;
+}
+
+.wrapper footer dl {
+  width: 25%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.wrapper footer dl dt {
+  width: 0.66667rem;
+  height: 0.66667rem;
+}
+
+.wrapper footer dl dt img {
+  width: 100%;
+}
+
+.wrapper footer dl dt dd p {
+  text-align: center;
+}
+
+.active {
+  border-left: 3px solid red;
+}
+
+input {
+  width: 0.53333rem;
+  height: 0.53333rem;
+  border: 1px solid #ccc;
+}
+
+.back {
+  background: yellow;
+}
+
+.bot {
+  width: 100%;
+  font-size: 0.53333rem;
+  position: fixed;
+  bottom: 0;
+  left: 20rem;
+  background: #fafafa;
+}
+
+.bot span {
+  color: red;
+}

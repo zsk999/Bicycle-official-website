@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="box"></div>
+</body>
+<script>
+    var xhr = new XMLHttpRequest();
+    xhr.onload = function(res) {
+        var data = JSON.parse(res.target.responseText);
+        var _id = window.location.search.slice(1).split("=")[1];
+        var str = "";
+        var newarr = window.localStorage.getItem('list') ? JSON.parse(window.localStorage.getItem('list')) : [];
+        data.forEach(function(item) {
+            item.content.forEach(function(items) {
+                if (items.id == _id) {
+                    str += `<img src="${items.img}"/>
+                            <p>${items.name}<p>
+                            <button class="btn">立即购买</button>`;
+                    console.log(newarr)
+                    var index = newarr.findIndex(function(itemes) {
+                        return itemes.id == _id;
+                    })
+                    if (index == -1) {
+                        newarr.push({
+                            name: items.name,
+                            num: 1,
+                            img: items.img,
+                            id: items.id,
+                            money: items.money
+                        });
+                    } else {
+                        newarr[index].num++;
+                    }
+                }
+            })
+        })
+        document.querySelector('.box').innerHTML = str;
+        //点击添加购物车本地存储
+        document.querySelector('.btn').onclick = function() {
+            var ls = window.localStorage;
+            // console.log(newarr)
+            ls.setItem('list', JSON.stringify(newarr));
+        }
+    }
+    xhr.open('get', '/render');
+    xhr.send();
+</script>
+
+</html>

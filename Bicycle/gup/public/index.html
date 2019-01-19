@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="js/mui.min.js"></script>
+    <link href="css/mui.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="./css/index.css">
+    <script type="text/javascript" charset="utf-8">
+        mui.init();
+    </script>
+</head>
+
+<body>
+    <div class="wrapper">
+        <header>
+            <div class="mui-icon mui-icon-back"></div>
+            <div class="ipt"><input type="text"></div>
+        </header>
+        <section>
+            <div class="mui-slider">
+                <div class="mui-slider-group">
+                    <div class="mui-slider-item" id="hero">
+                        <div class="lefban">
+                            <div class="lef">
+                                <ul class="uls">
+                                    <!-- 渲染 -->
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="rigban">
+                            <div class="rig">
+                                <div class="banner">
+                                    <img src="./images/IMG_1149_03.gif" alt="">
+                                </div>
+                                <div class="content">
+                                    <!-- 渲染 -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mui-slider-item">
+                        <!-- 分类页 -->
+                    </div>
+                    <div class="mui-slider-item bar">
+                        <ul class="ules">
+                            <!-- 渲染 -->
+                        </ul>
+                        <div class="bot">结算:
+                            <span>0.00</span>
+                        </div>
+                    </div>
+                    <div class="mui-slider-item">
+                        <!-- 我 -->
+                    </div>
+                </div>
+            </div>
+        </section>
+        <footer>
+            <dl>
+                <dt><img src="./images/IMG_1149_10.gif" alt=""></dt>
+                <dd><span>首页</span></dd>
+            </dl>
+            <dl>
+                <dt><img src="./images/IMG_1149_16.gif" alt=""></dt>
+                <dd><span>分类</span></dd>
+            </dl>
+            <dl>
+                <dt><img src="./images/IMG_1149_13.gif" alt=""></dt>
+                <dd><span>购物</span>车</dd>
+            </dl>
+            <dl>
+                <dt><img src="./images/IMG_1149_19.gif" alt=""></dt>
+                <dd><span>我的</span></dd>
+            </dl>
+        </footer>
+    </div>
+</body>
+<script src="js/better-scroll.js"></script>
+<script>
+    var Bscroll = new BScroll('.rigban');
+    var Bscroll = new BScroll('.lefban');
+    var Bscroll = new BScroll('.bar');
+    var dls = document.querySelectorAll("footer dl");
+    var headers = document.querySelector('header');
+    var uls = document.querySelector('.uls');
+    var content = document.querySelector('.content');
+    dls.forEach(function(item, index) {
+            item.addEventListener('tap', function() {
+                if (index == 0) {
+                    headers.innerHTML =
+                        `  
+                <div class="mui-icon mui-icon-back"></div>
+            <div class="ipt"><input type="text"></div>`;
+                } else if (index == 2) {
+                    headers.innerHTML =
+                        `  <div class="title">
+                            <div class="mui-icon mui-icon-back"></div>
+                            <div class="tit">购物车</div>
+                            <div class="after"></div>
+                        </div>`;
+                }
+                var gallery = mui('.mui-slider');
+                gallery.slider().gotoItem(index);
+            })
+        })
+        //渲染主页面
+    var xhr = new XMLHttpRequest();
+    xhr.onload = function(res) {
+        var data = JSON.parse(res.target.responseText);
+        slider(data);
+        render(data);
+    }
+    xhr.open('get', '/render');
+    xhr.send();
+    //渲染侧页面
+    function slider(data) {
+        var str = "";
+        data.forEach(function(item) {
+            str += `<li>${item.title}</li>`;
+        })
+        uls.innerHTML = str;
+        var lis = uls.querySelectorAll('li');
+        lis.forEach(function(item) {
+            item.addEventListener('tap', function() {
+                lis.forEach(function(items) {
+                    items.classList.remove("active");
+                })
+                item.classList.add("active");
+                isrender(data, this.innerHTML);
+            })
+        })
+    }
+
+    function render(date) {
+        var newstr = "";
+        date.forEach(function(item) {
+            item.content.forEach(function(items) {
+                newstr +=
+                    ` <dl id="${items.id}">
+                             <dt><img src="${items.img}" alt=""></dt>
+                             <dd><p>${items.name}</p></dd>
+                       </dl>`;
+            })
+        })
+        content.innerHTML = newstr;
+        content.querySelectorAll("dl").forEach(function(item) {
+            item.addEventListener('tap', function() {
+                console.log(this)
+                window.location.href = `title.html?id=${this.id}`;
+
+            })
+        })
+    }
+
+    function isrender(data, tit) {
+        var nowstr = "";
+        data.forEach(function(item) {
+            if (item.title == tit) {
+                console.log(item);
+                item.content.forEach(function(items) {
+                    nowstr +=
+                        ` <dl id="${items.id}">
+                             <dt><img src="${items.img}" alt=""></dt>
+                             <dd><p>${items.name}</p></dd>
+                       </dl>`;
+                })
+            }
+        })
+        content.innerHTML = nowstr;
+        content.querySelectorAll("dl").forEach(function(item) {
+            item.addEventListener('tap', function() {
+                console.log(this)
+                window.location.href = `title.html?id=${this.id}`;
+            })
+        })
+    }
+    var sttr = "";
+    var ules = document.querySelector('.ules');
+    var gowu = JSON.parse(window.localStorage.getItem('list'));
+    gowu.forEach(function(item) {
+        sttr +=
+            `<li>
+                                <div class="ig">
+                                   <input type="checkbox" class="ipts">
+                                </div>
+                                <dl>
+                                    <dt><img src="images/IMG_1149_06.gif" alt=""></dt>
+                                    <dd>
+                                        <p>${item.name}</p>
+                                        <p>${item.money}</p>
+                                    </dd>
+                                </dl>
+                                <div class="boxbill">
+                                    <p class="removes">X</p>
+                                    <p class="btn"><button class="prev">-</button><button>${item.num}</button><button class="next">+</button></p>
+                                </div>
+                            </li>`;
+    })
+    ules.innerHTML = sttr;
+    var ipts = document.querySelectorAll('.ipts');
+    var doler = 0;
+    ipts.forEach(function(items) {
+        items.addEventListener('tap', function() {
+
+            items.classList.toggle('back');
+            if (items.className == "ipts back") {
+                var num = this.parentNode.parentNode.querySelectorAll('.btn button')[1].innerHTML;
+                var mon = this.parentNode.parentNode.querySelectorAll('dl dd p')[1].innerHTML.slice(1);
+                doler += (num * 1) * (mon * 1);
+                document.querySelector('.bot span').innerHTML = doler;
+            } else {
+                var nums = this.parentNode.parentNode.querySelectorAll('.btn button')[1].innerHTML;
+                var mons = this.parentNode.parentNode.querySelectorAll('dl dd p')[1].innerHTML.slice(1);
+                doler -= (nums * 1) * (mons * 1);
+                document.querySelector('.bot span').innerHTML = doler;
+            }
+
+        })
+    })
+    document.querySelectorAll(".next").forEach(function(item) {
+        item.addEventListener('tap', function() {
+            item.parentNode.childNodes[1].innerHTML++;
+            if (item.parentNode.parentNode.parentNode.querySelector('.ig input').className ==
+                "ipts back") {
+                doler += item.parentNode.parentNode.parentNode.querySelectorAll('dl dd p')[1].innerHTML.slice(1) * 1;
+                document.querySelector('.bot span').innerHTML = doler;
+            }
+        })
+    })
+    document.querySelectorAll(".prev").forEach(function(item) {
+        item.addEventListener('tap', function() {
+            if (item.parentNode.childNodes[1].innerHTML < 1) {
+                item.parentNode.childNodes[1].innerHTML = 0;
+            } else {
+                item.parentNode.childNodes[1].innerHTML--;
+                if (item.parentNode.parentNode.parentNode.querySelector('.ig input').className ==
+                    "ipts back") {
+                    doler -= item.parentNode.parentNode.parentNode.querySelectorAll('dl dd p')[1].innerHTML
+                        .slice(1) * 1;
+                    document.querySelector('.bot span').innerHTML = doler;
+                }
+            }
+        })
+    })
+</script>
+
+</html>
